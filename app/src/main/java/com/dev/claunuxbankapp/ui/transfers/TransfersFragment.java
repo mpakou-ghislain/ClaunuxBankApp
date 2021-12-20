@@ -1,4 +1,4 @@
-package com.dev.claunuxbankapp.ui.dashboard;
+package com.dev.claunuxbankapp.ui.transfers;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.dev.claunuxbankapp.R;
 import com.dev.claunuxbankapp.databinding.FragmentDashboardBinding;
 
-public class DashboardFragment extends Fragment {
+public class TransfersFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private TransfersViewModel transfersViewModel;
     private FragmentDashboardBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        transfersViewModel =
+                new ViewModelProvider(this).get(TransfersViewModel.class);
 
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        transfersViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
