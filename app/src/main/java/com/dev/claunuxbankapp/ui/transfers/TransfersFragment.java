@@ -7,33 +7,27 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.dev.claunuxbankapp.databinding.FragmentDashboardBinding;
+import com.dev.claunuxbankapp.databinding.FragmentTransfersBinding;
 
 public class TransfersFragment extends Fragment {
 
     private TransfersViewModel transfersViewModel;
-    private FragmentDashboardBinding binding;
+    private FragmentTransfersBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         transfersViewModel =
                 new ViewModelProvider(this).get(TransfersViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentTransfersBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textDashboard;
-        transfersViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        transfersViewModel.getText().observe(getViewLifecycleOwner(),
+            s -> textView.setText(s));
         return root;
     }
 
